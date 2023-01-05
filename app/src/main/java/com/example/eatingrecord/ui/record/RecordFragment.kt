@@ -8,7 +8,9 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.eatingrecord.databinding.FragmentRecordBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class RecordFragment : Fragment() {
 
     private var _binding: FragmentRecordBinding? = null
