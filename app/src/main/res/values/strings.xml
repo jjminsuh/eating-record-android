@@ -3,4 +3,7 @@
     <string name="title_home">Home</string>
     <string name="title_record">Record</string>
     <string name="title_profile">Profile</string>
+
+    <string name="recommend_menu">추천 메뉴</string>
+    <string name="today_record">오늘의 기록</string>
 </resources>
