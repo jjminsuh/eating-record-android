@@ -21,6 +21,8 @@ class HomeFragment : Fragment() {
 
     private lateinit var recommendListAdapter: HomeRecommendListAdapter
     private lateinit var recommendListView: RecyclerView
+    private lateinit var recordListAdapter: HomeRecordListAdapter
+    private lateinit var recordListView: RecyclerView
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -43,6 +45,7 @@ class HomeFragment : Fragment() {
 
     private fun loadData() {
         viewModel.setRecommendList()
+        viewModel.setTodayRecord()
     }
 
     private fun renderUi() {
@@ -50,12 +53,20 @@ class HomeFragment : Fragment() {
         recommendListAdapter = HomeRecommendListAdapter()
         recommendListView.adapter = recommendListAdapter
         recommendListView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+
+        recordListView = binding.recyclerTodayRecord
+        recordListAdapter = HomeRecordListAdapter()
+        recordListView.adapter = recordListAdapter
+        recordListView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
     }
 
     private fun observe() {
         with(viewModel) {
             recommendList.observe(viewLifecycleOwner, Observer {
                 recommendListAdapter.submitList(it)
+            })
+            recordList.observe(viewLifecycleOwner, Observer {
+                recordListAdapter.submitList(it)
             })
         }
     }
