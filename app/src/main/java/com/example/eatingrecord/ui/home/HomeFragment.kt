@@ -4,37 +4,91 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.eatingrecord.data.model.HomeRecordInfo
+import com.example.eatingrecord.data.model.RecommendMenuInfo
 import com.example.eatingrecord.databinding.FragmentHomeBinding
+import com.example.eatingrecord.util.EventObserver
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
 
+    private lateinit var viewModel: HomeViewModel
     private var _binding: FragmentHomeBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
+
+    private lateinit var recommendListAdapter: HomeRecommendListAdapter
+    private lateinit var recommendListView: RecyclerView
+    private lateinit var recordListAdapter: HomeRecordListAdapter
+    private lateinit var recordListView: RecyclerView
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
+        viewModel = ViewModelProvider(this)[HomeViewModel::class.java]
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        val root: View = binding.root
 
-        val textView: TextView = binding.textHome
-        homeViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        loadData()
+        renderUi()
+        observe()
+    }
+
+    private fun loadData() {
+        viewModel.setRecommendList()
+        viewModel.setTodayRecord()
+    }
+
+    private fun renderUi() {
+        recommendListView = binding.recyclerRecommend
+        recommendListAdapter = HomeRecommendListAdapter(object: RecommendDetailListener{
+            override fun onClickRecommend(menu: RecommendMenuInfo) {
+                viewModel.onClickRecommend(menu)
+            }
+        })
+        recommendListView.adapter = recommendListAdapter
+        recommendListView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+
+        recordListView = binding.recyclerTodayRecord
+        recordListAdapter = HomeRecordListAdapter(object: TodayRecordDetailListener{
+            override fun onClickRecord(item: HomeRecordInfo) {
+                viewModel.onClickRecord(item)
+            }
+        })
+        recordListView.adapter = recordListAdapter
+        recordListView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+    }
+
+    private fun observe() {
+        with(viewModel) {
+            recommendList.observe(viewLifecycleOwner, Observer {
+                recommendListAdapter.submitList(it)
+            })
+            recordList.observe(viewLifecycleOwner, Observer {
+                recordListAdapter.submitList(it)
+            })
+            eventRecommendClick.observe(viewLifecycleOwner, EventObserver {
+                val action = HomeFragmentDirections.actionNavigationHomeToNavigationHomeRecommendDetail(it.menuId)
+                Navigation.findNavController(requireView()).navigate(action)
+            })
+            eventRecordClick.observe(viewLifecycleOwner, EventObserver {
+                val action = HomeFragmentDirections.actionNavigationHomeToNavigationHomeRecordDetail(it.menuId)
+                Navigation.findNavController(requireView()).navigate(action)
+            })
         }
-        return root
     }
 
     override fun onDestroyView() {
