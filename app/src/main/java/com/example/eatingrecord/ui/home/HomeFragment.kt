@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.eatingrecord.data.model.HomeRecordInfo
 import com.example.eatingrecord.data.model.RecommendMenuInfo
 import com.example.eatingrecord.databinding.FragmentHomeBinding
 import com.example.eatingrecord.util.EventObserver
@@ -62,7 +63,11 @@ class HomeFragment : Fragment() {
         recommendListView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
 
         recordListView = binding.recyclerTodayRecord
-        recordListAdapter = HomeRecordListAdapter()
+        recordListAdapter = HomeRecordListAdapter(object: TodayRecordDetailListener{
+            override fun onClickRecord(item: HomeRecordInfo) {
+                viewModel.onClickRecord(item)
+            }
+        })
         recordListView.adapter = recordListAdapter
         recordListView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
     }
@@ -76,7 +81,11 @@ class HomeFragment : Fragment() {
                 recordListAdapter.submitList(it)
             })
             eventRecommendClick.observe(viewLifecycleOwner, EventObserver {
-                val action = HomeFragmentDirections.actionNavigationHomeToNavigationHomeRecommendDetail(it.menuName)
+                val action = HomeFragmentDirections.actionNavigationHomeToNavigationHomeRecommendDetail(it.menuId)
+                Navigation.findNavController(requireView()).navigate(action)
+            })
+            eventRecordClick.observe(viewLifecycleOwner, EventObserver {
+                val action = HomeFragmentDirections.actionNavigationHomeToNavigationHomeRecordDetail(it.menuId)
                 Navigation.findNavController(requireView()).navigate(action)
             })
         }

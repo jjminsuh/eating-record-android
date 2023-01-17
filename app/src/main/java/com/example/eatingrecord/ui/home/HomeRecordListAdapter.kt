@@ -9,7 +9,7 @@ import com.example.eatingrecord.data.model.HomeRecordInfo
 import com.example.eatingrecord.databinding.HomeRecordItemBinding
 import javax.inject.Inject
 
-class HomeRecordListAdapter @Inject constructor() : ListAdapter<HomeRecordInfo, HomeRecordListAdapter.ViewHolder>(diffUtil) {
+class HomeRecordListAdapter @Inject constructor(private val recordDetailListener: TodayRecordDetailListener) : ListAdapter<HomeRecordInfo, HomeRecordListAdapter.ViewHolder>(diffUtil) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
@@ -28,6 +28,10 @@ class HomeRecordListAdapter @Inject constructor() : ListAdapter<HomeRecordInfo, 
     inner class ViewHolder(private val binding: HomeRecordItemBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: HomeRecordInfo) {
             binding.textRecommendMenuName.text = item.menuName
+
+            binding.root.setOnClickListener {
+                recordDetailListener.onClickRecord(item)
+            }
         }
     }
 

@@ -18,6 +18,14 @@
                 app:argType="string"
                 android:defaultValue="0000000" />
         </action>
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_home_record_detail"
+            app:destination="@id/navigation_home_record_detail">
+            <argument
+                android:name="menuId"
+                app:argType="string"
+                android:defaultValue="0000000" />
+        </action>
     </fragment>
 
     <fragment
@@ -25,6 +33,16 @@
         android:name="com.example.eatingrecord.ui.home.HomeRecommendDetailFragment"
         android:label="HomeRecommendDetail"
         tools:layout="@layout/fragment_recommend_detail">
+        <argument
+            android:name="menuId"
+            app:argType="string" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_home_record_detail"
+        android:name="com.example.eatingrecord.ui.home.HomeRecordDetailFragment"
+        android:label="HomeRecordDetail"
+        tools:layout="@layout/fragment_today_record_detail">
         <argument
             android:name="menuId"
             app:argType="string" />
