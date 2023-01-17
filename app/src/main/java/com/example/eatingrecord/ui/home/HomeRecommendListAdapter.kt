@@ -9,7 +9,7 @@ import com.example.eatingrecord.data.model.RecommendMenuInfo
 import com.example.eatingrecord.databinding.HomeRecommendItemBinding
 import javax.inject.Inject
 
-class HomeRecommendListAdapter @Inject constructor() : ListAdapter<RecommendMenuInfo, HomeRecommendListAdapter.ViewHolder>(diffUtil) {
+class HomeRecommendListAdapter @Inject constructor(private val recommendDetailListener: RecommendDetailListener) : ListAdapter<RecommendMenuInfo, HomeRecommendListAdapter.ViewHolder>(diffUtil) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
@@ -28,6 +28,10 @@ class HomeRecommendListAdapter @Inject constructor() : ListAdapter<RecommendMenu
     inner class ViewHolder(private val binding: HomeRecommendItemBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: RecommendMenuInfo) {
             binding.textRecommendMenuName.text = item.menuName
+
+            binding.root.setOnClickListener {
+                recommendDetailListener.onClickRecommend(item)
+            }
         }
     }
 

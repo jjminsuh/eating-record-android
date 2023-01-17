@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.eatingrecord.data.model.HomeRecordInfo
 import com.example.eatingrecord.data.model.RecommendMenuInfo
+import com.example.eatingrecord.util.Event
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -16,6 +17,9 @@ class HomeViewModel @Inject constructor(): ViewModel() {
 
     private val _recordList = MutableLiveData<ArrayList<HomeRecordInfo>>()
     val recordList: LiveData<ArrayList<HomeRecordInfo>> = _recordList
+
+    private val _eventRecommendClick = MutableLiveData<Event<RecommendMenuInfo>>()
+    val eventRecommendClick: LiveData<Event<RecommendMenuInfo>> = _eventRecommendClick
 
     fun setRecommendList() {
         val recList: ArrayList<RecommendMenuInfo> = ArrayList()
@@ -36,5 +40,9 @@ class HomeViewModel @Inject constructor(): ViewModel() {
         recList.add(HomeRecordInfo(menuName = "저녁"))
 
         _recordList.value = recList
+    }
+
+    fun onClickRecommend(item: RecommendMenuInfo) {
+        _eventRecommendClick.value = Event(item)
     }
 }

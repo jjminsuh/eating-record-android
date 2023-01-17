@@ -7,9 +7,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.eatingrecord.data.model.RecommendMenuInfo
 import com.example.eatingrecord.databinding.FragmentHomeBinding
+import com.example.eatingrecord.util.EventObserver
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -50,7 +53,11 @@ class HomeFragment : Fragment() {
 
     private fun renderUi() {
         recommendListView = binding.recyclerRecommend
-        recommendListAdapter = HomeRecommendListAdapter()
+        recommendListAdapter = HomeRecommendListAdapter(object: RecommendDetailListener{
+            override fun onClickRecommend(menu: RecommendMenuInfo) {
+                viewModel.onClickRecommend(menu)
+            }
+        })
         recommendListView.adapter = recommendListAdapter
         recommendListView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
 
@@ -67,6 +74,10 @@ class HomeFragment : Fragment() {
             })
             recordList.observe(viewLifecycleOwner, Observer {
                 recordListAdapter.submitList(it)
+            })
+            eventRecommendClick.observe(viewLifecycleOwner, EventObserver {
+                val action = HomeFragmentDirections.actionNavigationHomeToNavigationHomeRecommendDetail(it.menuName)
+                Navigation.findNavController(requireView()).navigate(action)
             })
         }
     }
