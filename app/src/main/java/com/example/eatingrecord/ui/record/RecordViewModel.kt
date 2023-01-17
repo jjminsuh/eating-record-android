@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.eatingrecord.util.Event
 import dagger.hilt.android.lifecycle.HiltViewModel
 import java.util.Calendar
 import java.util.GregorianCalendar
@@ -23,6 +24,9 @@ class RecordViewModel @Inject constructor() : ViewModel() {
 
     private val _dayList = MutableLiveData<ArrayList<String>>()
     val dayList: LiveData<ArrayList<String>> = _dayList
+
+    private val _eventDateClick = MutableLiveData<Event<String>>()
+    val eventDateClick: LiveData<Event<String>> = _eventDateClick
 
     fun setDay() {
         _dayList.value = arrayListOf("일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일")
@@ -57,4 +61,7 @@ class RecordViewModel @Inject constructor() : ViewModel() {
         }
     }
 
+    fun onClickDate(date: String) {
+        _eventDateClick.value = Event(date)
+    }
 }

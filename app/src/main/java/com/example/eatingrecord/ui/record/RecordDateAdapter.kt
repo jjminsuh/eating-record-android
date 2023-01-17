@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.eatingrecord.databinding.RecordDateItemBinding
 import javax.inject.Inject
 
-class RecordDateAdapter @Inject constructor() : ListAdapter<String, RecordDateAdapter.ViewHolder>(diffUtil){
+class RecordDateAdapter @Inject constructor(private val dateListener: DateDetailListener) : ListAdapter<String, RecordDateAdapter.ViewHolder>(diffUtil){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
@@ -26,10 +26,14 @@ class RecordDateAdapter @Inject constructor() : ListAdapter<String, RecordDateAd
 
     inner class ViewHolder(private val binding: RecordDateItemBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(singleDate: String) {
-            if (singleDate == "EMTY") {
+            if (singleDate == "EMPTY") {
                 binding.dateText.text = ""
             } else {
                 binding.dateText.text = singleDate
+
+                binding.root.setOnClickListener {
+                    dateListener.onClickDate(singleDate)
+                }
             }
         }
     }

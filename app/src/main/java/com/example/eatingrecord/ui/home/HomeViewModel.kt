@@ -3,7 +3,7 @@ package com.example.eatingrecord.ui.home
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.eatingrecord.data.model.HomeRecordInfo
+import com.example.eatingrecord.data.model.RecordInfo
 import com.example.eatingrecord.data.model.RecommendMenuInfo
 import com.example.eatingrecord.util.Event
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -15,14 +15,14 @@ class HomeViewModel @Inject constructor(): ViewModel() {
     private val _recommendList = MutableLiveData<ArrayList<RecommendMenuInfo>>()
     val recommendList: LiveData<ArrayList<RecommendMenuInfo>> = _recommendList
 
-    private val _recordList = MutableLiveData<ArrayList<HomeRecordInfo>>()
-    val recordList: LiveData<ArrayList<HomeRecordInfo>> = _recordList
+    private val _recordList = MutableLiveData<ArrayList<RecordInfo>>()
+    val recordList: LiveData<ArrayList<RecordInfo>> = _recordList
 
     private val _eventRecommendClick = MutableLiveData<Event<RecommendMenuInfo>>()
     val eventRecommendClick: LiveData<Event<RecommendMenuInfo>> = _eventRecommendClick
 
-    private val _eventRecordClick = MutableLiveData<Event<HomeRecordInfo>>()
-    val eventRecordClick: LiveData<Event<HomeRecordInfo>> = _eventRecordClick
+    private val _eventRecordClick = MutableLiveData<Event<RecordInfo>>()
+    val eventRecordClick: LiveData<Event<RecordInfo>> = _eventRecordClick
 
     fun setRecommendList() {
         val recList: ArrayList<RecommendMenuInfo> = ArrayList()
@@ -35,12 +35,12 @@ class HomeViewModel @Inject constructor(): ViewModel() {
     }
 
     fun setTodayRecord() {
-        val recList: ArrayList<HomeRecordInfo> = ArrayList()
+        val recList: ArrayList<RecordInfo> = ArrayList()
 
-        recList.add(HomeRecordInfo(menuId = "0000000", menuName = "아침"))
-        recList.add(HomeRecordInfo(menuId = "0000000", menuName = "점심"))
-        recList.add(HomeRecordInfo(menuId = "0000000", menuName = "간식"))
-        recList.add(HomeRecordInfo(menuId = "0000000", menuName = "저녁"))
+        recList.add(RecordInfo(menuId = "0000000", menuName = "아침"))
+        recList.add(RecordInfo(menuId = "0000000", menuName = "점심"))
+        recList.add(RecordInfo(menuId = "0000000", menuName = "간식"))
+        recList.add(RecordInfo(menuId = "0000000", menuName = "저녁"))
 
         _recordList.value = recList
     }
@@ -49,7 +49,7 @@ class HomeViewModel @Inject constructor(): ViewModel() {
         _eventRecommendClick.value = Event(item)
     }
 
-    fun onClickRecord(item: HomeRecordInfo) {
+    fun onClickRecord(item: RecordInfo) {
         _eventRecordClick.value = Event(item)
     }
 }
