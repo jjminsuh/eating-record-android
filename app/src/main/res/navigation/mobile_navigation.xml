@@ -52,7 +52,26 @@
         android:id="@+id/navigation_record"
         android:name="com.example.eatingrecord.ui.record.RecordFragment"
         android:label="@string/title_record"
-        tools:layout="@layout/fragment_record" />
+        tools:layout="@layout/fragment_record">
+        <action
+            android:id="@+id/action_navigation_record_to_navigation_record_date_detail"
+            app:destination="@id/navigation_record_date_detail">
+            <argument
+                android:name="date"
+                app:argType="string"
+                android:defaultValue="2000-01-01" />
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_record_date_detail"
+        android:name="com.example.eatingrecord.ui.record.RecordDateDetailFragment"
+        android:label="RecordDateDetail"
+        tools:layout="@layout/fragment_record_date_detail">
+        <argument
+            android:name="date"
+            app:argType="string" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_profile"

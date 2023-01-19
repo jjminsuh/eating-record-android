@@ -1,6 +1,6 @@
 package com.example.eatingrecord.data.model
 
-data class HomeRecordInfo(
+data class RecordInfo(
     val menuId: String,
     val menuName: String
 )

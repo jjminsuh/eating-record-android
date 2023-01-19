@@ -42,4 +42,9 @@ class HomeRecordDetailFragment : Fragment() {
     private fun observe() {
 
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }

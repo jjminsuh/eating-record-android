@@ -10,7 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.eatingrecord.data.model.HomeRecordInfo
+import com.example.eatingrecord.data.model.RecordInfo
 import com.example.eatingrecord.data.model.RecommendMenuInfo
 import com.example.eatingrecord.databinding.FragmentHomeBinding
 import com.example.eatingrecord.util.EventObserver
@@ -64,7 +64,7 @@ class HomeFragment : Fragment() {
 
         recordListView = binding.recyclerTodayRecord
         recordListAdapter = HomeRecordListAdapter(object: TodayRecordDetailListener{
-            override fun onClickRecord(item: HomeRecordInfo) {
+            override fun onClickRecord(item: RecordInfo) {
                 viewModel.onClickRecord(item)
             }
         })
