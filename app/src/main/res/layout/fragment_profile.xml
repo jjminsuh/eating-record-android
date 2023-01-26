@@ -6,17 +6,169 @@
     android:layout_height="match_parent"
     tools:context=".ui.profile.ProfileFragment">
 
-    <TextView
-        android:id="@+id/text_notifications"
+    <View
+        android:id="@+id/profile_background"
         android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:background="@drawable/profile_rectangle"
+        android:layout_margin="12dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <ImageView
+        android:id="@+id/image_profile"
+        android:layout_width="54dp"
+        android:layout_height="54dp"
+        android:src="@drawable/ic_android_black_54dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintLeft_toLeftOf="@id/profile_background"
+        app:layout_constraintTop_toTopOf="@id/profile_background"
+        app:layout_constraintBottom_toBottomOf="@id/profile_background"/>
+
+    <TextView
+        android:id="@+id/text_name"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="이름 or 닉네임 or 아이디?"
+        android:layout_marginStart="24dp"
+        app:layout_constraintLeft_toRightOf="@id/image_profile"
+        app:layout_constraintTop_toTopOf="@id/profile_background"
+        app:layout_constraintBottom_toTopOf="@id/text_email"/>
+
+    <TextView
+        android:id="@+id/text_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="emailtest@email.com"
+        app:layout_constraintLeft_toLeftOf="@id/text_name"
+        app:layout_constraintTop_toBottomOf="@id/text_name"
+        app:layout_constraintBottom_toBottomOf="@id/profile_background"/>
+
+    <TextView
+        android:id="@+id/text_my_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/my_info"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/profile_background" />
+
+    <TextView
+        android:id="@+id/text_height"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:text="@string/my_height"
+        android:textSize="16dp"
+        android:textStyle="bold"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintLeft_toLeftOf="@id/text_my_info"
+        app:layout_constraintTop_toBottomOf="@id/text_my_info"/>
+
+    <TextView
+        android:id="@+id/text_height_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="203.5cm"
+        android:layout_marginStart="4dp"
+        app:layout_constraintLeft_toRightOf="@id/text_height"
+        app:layout_constraintTop_toTopOf="@id/text_height"/>
+
+    <TextView
+        android:id="@+id/text_weight"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:text="@string/my_weight"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintLeft_toLeftOf="@id/text_my_info"
+        app:layout_constraintTop_toBottomOf="@id/text_height"/>
+
+    <TextView
+        android:id="@+id/text_weight_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="103kg"
+        android:layout_marginStart="4dp"
+        app:layout_constraintLeft_toRightOf="@id/text_weight"
+        app:layout_constraintTop_toTopOf="@id/text_weight"/>
+
+    <TextView
+        android:id="@+id/text_sex"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:text="@string/my_sex"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintLeft_toLeftOf="@id/text_my_info"
+        app:layout_constraintTop_toBottomOf="@id/text_weight"/>
+
+    <TextView
+        android:id="@+id/text_sex_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="남"
+        android:layout_marginStart="8dp"
+        app:layout_constraintLeft_toRightOf="@id/text_sex"
+        app:layout_constraintTop_toTopOf="@id/text_sex"/>
+
+    <TextView
+        android:id="@+id/text_meal_count"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:text="@string/my_meal_count"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintLeft_toLeftOf="@id/text_my_info"
+        app:layout_constraintTop_toBottomOf="@id/text_sex"/>
+
+    <TextView
+        android:id="@+id/text_meal_count_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="3회/일"
+        android:layout_marginStart="8dp"
+        app:layout_constraintLeft_toRightOf="@id/text_meal_count"
+        app:layout_constraintTop_toTopOf="@id/text_meal_count"/>
+
+    <TextView
+        android:id="@+id/button_modify"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/modify"
+        android:layout_marginEnd="24dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_meal_count_value"/>
+
+    <TextView
+        android:id="@+id/text_notice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/notice"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/button_modify" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_notice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="18dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_notice"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
