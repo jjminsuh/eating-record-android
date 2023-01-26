@@ -64,8 +64,9 @@ class ProfileFragment : Fragment() {
 
                 binding.textName.text = it.name
                 binding.textEmail.text = it.email
-                binding.textHeightValue.text = "${it.height}cm"
-                binding.textWeightValue.text = "${it.weight}kg"
+                binding.textAgeValue.text = "${it.age}세"
+                binding.textHeightValue.text = "${it.height} cm"
+                binding.textWeightValue.text = "${it.weight} kg"
 
                 when (it.sex) {
                     1 -> {

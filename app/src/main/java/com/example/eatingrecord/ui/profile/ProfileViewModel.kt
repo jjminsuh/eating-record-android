@@ -14,6 +14,6 @@ class ProfileViewModel @Inject constructor(): ViewModel() {
     val userInfo: LiveData<ProfileInfo> = _userInfo
 
     fun setUserInfo() {
-        _userInfo.value = ProfileInfo("idTest", "test", "https://github.com/jjminsuh/eating-record-android/blob/main/app/src/main/res/drawable/test.png?raw=true","test@gmail.com", 203.5, 103.0, 1, 3)
+        _userInfo.value = ProfileInfo("idTest", "test", "https://github.com/jjminsuh/eating-record-android/blob/main/app/src/main/res/drawable/test.png?raw=true","test@gmail.com", 25,203.5, 103.0, 1, 3)
     }
 }

@@ -5,6 +5,7 @@ data class ProfileInfo(
     val name: String,
     val image: String?,
     val email: String,
+    val age: Int,
     val height: Double,
     val weight: Double,
     val sex: Int,
