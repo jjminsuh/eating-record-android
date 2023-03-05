@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/title_modify"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/title_modify"
+        android:textSize="24dp"
+        android:textStyle="bold"
+        android:layout_marginTop="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/text_age"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:text="@string/my_age"
+        android:textStyle="bold"
+        android:textSize="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/edit_age"
+        app:layout_constraintTop_toBottomOf="@id/title_modify" />
+
+    <EditText
+        android:id="@+id/edit_age"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        app:layout_constraintLeft_toRightOf="@id/text_age"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/text_age"
+        app:layout_constraintBottom_toBottomOf="@id/text_age"/>
+
+    <TextView
+        android:id="@+id/text_height"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:text="@string/my_height"
+        android:textStyle="bold"
+        android:textSize="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/edit_height"
+        app:layout_constraintTop_toBottomOf="@id/edit_age"/>
+
+    <EditText
+        android:id="@+id/edit_height"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        app:layout_constraintLeft_toRightOf="@id/text_height"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/text_height"
+        app:layout_constraintBottom_toBottomOf="@id/text_height"/>
+
+    <TextView
+        android:id="@+id/text_weight"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:text="@string/my_weight"
+        android:textStyle="bold"
+        android:textSize="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/edit_weight"
+        app:layout_constraintTop_toBottomOf="@id/edit_height"/>
+
+    <EditText
+        android:id="@+id/edit_weight"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        app:layout_constraintLeft_toRightOf="@id/text_weight"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/text_weight"
+        app:layout_constraintBottom_toBottomOf="@id/text_weight"/>
+
+    <TextView
+        android:id="@+id/text_sex"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:text="@string/my_sex"
+        android:textStyle="bold"
+        android:textSize="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/edit_sex"
+        app:layout_constraintTop_toBottomOf="@id/edit_weight"/>
+
+    <EditText
+        android:id="@+id/edit_sex"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        app:layout_constraintLeft_toRightOf="@id/text_sex"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/text_sex"
+        app:layout_constraintBottom_toBottomOf="@id/text_sex"/>
+
+    <TextView
+        android:id="@+id/text_meal_count"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:text="@string/my_meal_count"
+        android:textStyle="bold"
+        android:textSize="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/edit_meal_count"
+        app:layout_constraintTop_toBottomOf="@id/edit_sex"/>
+
+    <EditText
+        android:id="@+id/edit_meal_count"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        app:layout_constraintLeft_toRightOf="@id/text_meal_count"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/text_meal_count"
+        app:layout_constraintBottom_toBottomOf="@id/text_meal_count"/>
+
+    <TextView
+        android:id="@+id/text_ok"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/ok"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        app:layout_constraintRight_toLeftOf="@id/text_cancel"
+        app:layout_constraintTop_toBottomOf="@id/edit_meal_count"/>
+
+    <TextView
+        android:id="@+id/text_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/cancel"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:layout_marginEnd="24dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/text_ok"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
